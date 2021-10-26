@@ -16,9 +16,9 @@ class DetallesComida extends StatelessWidget {
           SliverList(
             delegate: SliverChildListDelegate([
               _TituloYPoster(),
-              _Sinopsis(),
-              _Sinopsis(),
-              _Sinopsis(),
+              _Sinopsis(texto: 'algo1'),
+              _Sinopsis(texto: 'algo2'),
+              _Sinopsis(texto: 'algo3'),
               botonRestaurante(),
               botonVideo()
             ]),
@@ -113,11 +113,14 @@ class _TituloYPoster extends StatelessWidget {
 
 class _Sinopsis extends StatelessWidget {
   @override
+  final String texto;
+  const _Sinopsis({Key? key, required this.texto}) : super(key: key);
+
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 30, vertical: 10),
       child: Text(
-        'Exercitation ea sunt cupidatat ea proident minim dolore minim eu deserunt pariatur laboris cupidatat fugiat. Mollit officia laborum sunt est laboris est Lorem ea. In dolore aliquip sint labore cillum reprehenderit consequat est eu velit eu.',
+        this.texto,
         style: Theme.of(context).textTheme.subtitle1,
         textAlign: TextAlign.center,
       ),
