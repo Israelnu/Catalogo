@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
           'comida': (BuildContext context) => Pantallacomida(),
           'cena': (BuildContext context) => PantallaCena(),
           'postre': (BuildContext context) => PantallaPostre(),
-          'detalles': (BuildContext context) => DetallesComida()
+          'detalles': (BuildContext context) => DetallesComida(),
         });
   }
 }

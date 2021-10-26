@@ -4,59 +4,63 @@ class PeliculasSlider extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: double.infinity,
-      height: 600,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Padding(
-            child: Text(
-              'Mejores comidas',
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-            ),
-            padding: EdgeInsets.only(top: 20, bottom: 30, left: 20, right: 20),
-            //padding: EdgeInsets.symmetric(horizontal: 20),
-          ),
-          Expanded(
-            child: ListView.builder(
-              scrollDirection: Axis.horizontal,
-              itemCount: 5,
-              itemBuilder: (BuildContext context, int index) {
-                return _MoviePoster();
-              },
-            ),
-          ),
-          Expanded(
-            child: ListView.builder(
-              scrollDirection: Axis.horizontal,
-              itemCount: 5,
-              itemBuilder: (BuildContext context, int index) {
-                return _MoviePoster();
-              },
-            ),
-          ),
-          Expanded(
-            child: ListView.builder(
-              scrollDirection: Axis.horizontal,
-              itemCount: 5,
-              itemBuilder: (BuildContext context, int index) {
-                return _MoviePoster();
-              },
-            ),
-          )
-        ],
-      ),
-    );
+        height: 400,
+        width: double.infinity,
+        child: Table(
+          children: [
+            TableRow(children: [
+              _platillos(
+                  plato: 'agua',
+                  imagen:
+                      'https://www.centrojuliafarre.es/wp-content/uploads/2018/07/fingers-calabacin.jpg'),
+              _platillos(
+                  plato: 'agua',
+                  imagen:
+                      'https://www.centrojuliafarre.es/wp-content/uploads/2018/07/fingers-calabacin.jpg'),
+              _platillos(
+                  plato: 'agua',
+                  imagen:
+                      'https://www.centrojuliafarre.es/wp-content/uploads/2018/07/fingers-calabacin.jpg'),
+              _platillos(
+                  plato: 'agua',
+                  imagen:
+                      'https://www.centrojuliafarre.es/wp-content/uploads/2018/07/fingers-calabacin.jpg'),
+            ]),
+            TableRow(children: [
+              _platillos(
+                  plato: 'agua',
+                  imagen:
+                      'https://www.centrojuliafarre.es/wp-content/uploads/2018/07/fingers-calabacin.jpg'),
+              _platillos(
+                  plato: 'agua',
+                  imagen:
+                      'https://www.centrojuliafarre.es/wp-content/uploads/2018/07/fingers-calabacin.jpg'),
+              _platillos(
+                  plato: 'agua',
+                  imagen:
+                      'https://www.centrojuliafarre.es/wp-content/uploads/2018/07/fingers-calabacin.jpg'),
+              _platillos(
+                  plato: 'agua',
+                  imagen:
+                      'https://www.centrojuliafarre.es/wp-content/uploads/2018/07/fingers-calabacin.jpg'),
+            ])
+          ],
+        ));
   }
 }
 
-class _MoviePoster extends StatelessWidget {
+class _platillos extends StatelessWidget {
   @override
+  final String plato;
+  final String imagen;
+  const _platillos({Key? key, required this.plato, required this.imagen})
+      : super(key: key);
+
   Widget build(BuildContext context) {
     return Container(
-        width: 100,
-        height: 50,
-        color: Colors.amber,
+        width: 40,
+        height: 130,
+        color: Color.fromRGBO(62, 66, 107, 0.7),
         margin: EdgeInsets.all(10),
         child: Column(
           children: [
@@ -67,7 +71,7 @@ class _MoviePoster extends StatelessWidget {
                 borderRadius: BorderRadius.circular(20),
                 child: FadeInImage(
                   placeholder: AssetImage('assets/isabelle.jpg'),
-                  image: NetworkImage('https://via.placeholder.com/300x400'),
+                  image: NetworkImage(this.imagen),
                   fit: BoxFit.cover,
                 ),
               ),
@@ -76,7 +80,7 @@ class _MoviePoster extends StatelessWidget {
               height: 0.5,
             ),
             Text(
-              'Shang-shi y la leyenda de los diez anillos',
+              this.plato,
               overflow: TextOverflow.ellipsis,
               textAlign: TextAlign.center,
             )

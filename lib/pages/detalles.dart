@@ -12,7 +12,10 @@ class DetallesComida extends StatelessWidget {
     return Scaffold(
       body: CustomScrollView(
         slivers: [
-          _AppBarSliver(),
+          _DatosPlatillos(
+              titulo: 'plato ejemplo',
+              imagen:
+                  'https://www.centrojuliafarre.es/wp-content/uploads/2018/07/fingers-calabacin.jpg'),
           SliverList(
             delegate: SliverChildListDelegate([
               _TituloYPoster(),
@@ -29,8 +32,13 @@ class DetallesComida extends StatelessWidget {
   }
 }
 
-class _AppBarSliver extends StatelessWidget {
+class _DatosPlatillos extends StatelessWidget {
   @override
+  final String imagen;
+  final String titulo;
+  const _DatosPlatillos({Key? key, required this.titulo, required this.imagen})
+      : super(key: key);
+
   Widget build(BuildContext context) {
     return SliverAppBar(
       expandedHeight: 200,
@@ -43,13 +51,13 @@ class _AppBarSliver extends StatelessWidget {
           width: double.infinity,
           alignment: Alignment.bottomCenter,
           child: Text(
-            'Pollo de miel',
+            this.titulo,
             style: TextStyle(fontSize: 16),
           ),
         ),
         background: FadeInImage(
           placeholder: AssetImage('assets/cargar.gif'),
-          image: NetworkImage('https://via.placeholder.com/300x400'),
+          image: NetworkImage(this.imagen),
           fit: BoxFit.cover,
         ),
       ),
@@ -69,7 +77,8 @@ class _TituloYPoster extends StatelessWidget {
             borderRadius: BorderRadius.circular(20),
             child: FadeInImage(
               placeholder: AssetImage('assets/cargar.gif'),
-              image: NetworkImage('https://via.placeholder.com/300x400'),
+              image: NetworkImage(
+                  'https://www.centrojuliafarre.es/wp-content/uploads/2018/07/fingers-calabacin.jpg'),
               height: 150,
             ),
           ),
