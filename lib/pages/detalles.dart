@@ -3,25 +3,28 @@ import 'package:catalogo/utils/botonvideo.dart';
 import 'package:flutter/material.dart';
 
 class DetallesComida extends StatelessWidget {
-  const DetallesComida({Key? key}) : super(key: key);
+  const DetallesComida(
+      {Key? key,
+      required this.texto,
+      required this.imagen,
+      required this.parrafo})
+      : super(key: key);
+  final String texto;
+  final String imagen;
+  final String parrafo;
 
   @override
   Widget build(BuildContext context) {
-    final String movie =
-        ModalRoute.of(context)?.settings.arguments.toString() ?? 'no-movie';
     return Scaffold(
       body: CustomScrollView(
         slivers: [
-          _DatosPlatillos(
-              titulo: 'plato ejemplo',
-              imagen:
-                  'https://www.centrojuliafarre.es/wp-content/uploads/2018/07/fingers-calabacin.jpg'),
+          _DatosPlatillos(titulo: this.texto, imagen: this.imagen),
           SliverList(
             delegate: SliverChildListDelegate([
-              _TituloYPoster(),
-              _Sinopsis(texto: 'algo1'),
-              _Sinopsis(texto: 'algo2'),
-              _Sinopsis(texto: 'algo3'),
+              _TituloYPoster(
+                posters: this.imagen,
+              ),
+              _Sinopsis(texto: this.parrafo),
               botonRestaurante(),
               botonVideo()
             ]),
@@ -66,6 +69,11 @@ class _DatosPlatillos extends StatelessWidget {
 }
 
 class _TituloYPoster extends StatelessWidget {
+  final String posters;
+  const _TituloYPoster({
+    Key? key,
+    required this.posters,
+  }) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -77,8 +85,7 @@ class _TituloYPoster extends StatelessWidget {
             borderRadius: BorderRadius.circular(20),
             child: FadeInImage(
               placeholder: AssetImage('assets/cargar.gif'),
-              image: NetworkImage(
-                  'https://www.centrojuliafarre.es/wp-content/uploads/2018/07/fingers-calabacin.jpg'),
+              image: NetworkImage(this.posters),
               height: 150,
             ),
           ),
